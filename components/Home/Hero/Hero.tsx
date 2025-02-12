@@ -1,7 +1,53 @@
+'use client';
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import axios from 'axios';
+import { Loader } from 'lucide-react';
+import React, { useState } from 'react'
+import { toast } from 'sonner';
 
 const Hero = () => {
+
+    const [prompt, setPrompt]= useState ('');
+    const [image, setImage]= useState ('');
+    const [loading, setLoading]= useState (false);
+
+    const handleImageGeneration = async () => {
+        setLoading(true)
+        const options = {
+          method: 'POST',
+          url: 'https://ai-text-to-image-generator-api.p.rapidapi.com/realistic',
+          headers: {
+            'x-rapidapi-key': '6276852376msh36afe6b11748381p170744jsn573c0ab1ae6e',
+            'x-rapidapi-host': 'ai-text-to-image-generator-api.p.rapidapi.com',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            inputs: prompt
+          }
+        };
+    try {
+        const response = await axios.request(options);
+        setImage(response?.data.url);
+        toast.success('Image Generated Successfully'); 
+    } catch (error:unknown) {
+        if(axios.isAxiosError(error) && error.response){
+            toast.error(error.response.data.message);
+        } else{
+            toast.error("An Unexpected Error Occured");
+        }
+    }finally{
+        setLoading(false);
+    }
+    };
+
+    const handleDownloadImage = () => {
+        const link = document.createElement("a");
+        link.target="_blank";
+        link.href=image;
+        link.download="generated-img.jpg";
+        link.click();
+
+    }
   return (
     <div className='w-[95%] min-h-screen relative mx-auto mt-[20vh]'>
         {/* content */}
@@ -16,8 +62,10 @@ const Hero = () => {
           type="text"
           placeholder="Generate Your Dream Image"
           className="h-full rounded-lg outline-none w-full text-black block flex-1 placeholder:text-xs sm:placeholder:text-base"
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
         />
-        <Button variant={'default'}> Generate</Button>
+        <Button onClick={handleImageGeneration} variant={'default'}> Generate</Button>
   </div>
   {/* Tags */}
   <div className="flex items-center mt-6 space-x-4 flex-wrap space-y-3">
@@ -28,6 +76,24 @@ const Hero = () => {
        <Button variant={"secondary"}>Animation</Button>
        <Button variant={"secondary"}>Business</Button>
   </div>
+  {/*loading and Image */}
+  {loading &&(
+    <div>
+        <Loader className='animate-spin mt-6' />
+    </div>    
+  )}
+  {image && (
+    <div className=' mt-8 flex flex-col items-center'>
+    <img src={image} 
+         alt="ai image" 
+         className='max-w-full h-[500px] eounded-lg shadow-lg' 
+         loading='lazy' />
+    <Button onClick={handleDownloadImage}
+            className='mt-4 mb-4 bg-orange-500 hover:bg-orange-800'>
+        Download
+    </Button>
+    </div>
+    )}
  </div>
 </div>
   )
