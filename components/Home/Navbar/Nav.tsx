@@ -1,11 +1,30 @@
+'use client';
 import { Navlinks } from '@/constant/constant'
 import { MenuIcon, Search, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const Nav = () => {
+
+type Props = {
+    openNav: () =>void;
+}
+const Nav = ({openNav}:Props) => {
+
+    const [navBg, setNavBg] = useState(false);
+    useEffect(() => {
+        const handler =() => {
+            if(window.scrollY >=90) setNavBg(true);
+            if(window.scrollY < 90) setNavBg(false);
+        } 
+        window.addEventListener('scroll', handler);
+
+        return () => window.removeEventListener("scroll", handler)
+
+    }, []);
+   
+const bg_style = navBg ? "bg-gray-900 shadow-md" : "";
   return (
-    <div className= "flex items-center justify-between h-[12vh] fixed z-[100] w-full mx-auto transition-all duration-200 ">
+    <div className= {`flex  ${bg_style} items-center  justify-between h-[12vh] fixed z-[100] w-full mx-auto transition-all duration-200 `}>
         {/*logo */}
         <h1 className= "text-3xl text-white font-bold ml-8 md:ml-16"> Imagine.AI</h1>
         <div className= " md:flex items-center space-x-10 hidden">
@@ -22,7 +41,7 @@ const Nav = () => {
      <div className="flex items-center space-x-5 md:space-x-8 text-white mr-8 md:mr-16">
         <ShoppingCart className="cursor-pointer w-6 h-6" />
         <Search className="cursor-pointer w-6 h-6" />
-        <MenuIcon className="cursor-pointer w-6 h-6 md:hidden" />
+        <MenuIcon onClick={openNav} className="cursor-pointer w-6 h-6 md:hidden" />
      </div>
     </div>
   )
