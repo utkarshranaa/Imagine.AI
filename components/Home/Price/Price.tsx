@@ -48,10 +48,10 @@ const Price = () => {
   </div>
   {/*Price Card Section*/}
   <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-    <div>
+    <div data-aos="fade-right" data-aos-anchor-placement="top-center">
         <PriceCard price="4" user="1" type="Silver Pack" />
     </div>
-    <div>
+    <div data-aos="fade-right" data-aos-anchor-placement="top-center" data-aos-delay="100">
         <PriceCard price="8" user="3" type="Gold Pack" />
     </div>
   </div>
