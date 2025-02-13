@@ -3,6 +3,8 @@ import Hero from './Hero/Hero'
 import RecentImage from './RecentImage/RecentImage';
 import About from './About/About';
 import Price from './Price/Price';
+import Review from './Review/Review';
+import Faq from './Faq/Faq';
 
 const  Home = () => {
   return (
@@ -11,6 +13,8 @@ const  Home = () => {
       <RecentImage />
       <About />
       <Price />
+      <Review />
+      <Faq />
       </div>
   );
 };
