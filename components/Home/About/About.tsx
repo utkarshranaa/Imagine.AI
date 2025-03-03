@@ -24,15 +24,13 @@ const About = () => {
             What we do
           </h1>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Create your own AI Business easily.
+            Create your own AI Image
           </h1>
           <p className="text-gray-200 mb-8 text-base">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam minus 
-           placeat numquam eaque cupiditate sint, quaerat rem voluptatem saepe 
-           provident, sequi ipsam, doloribus at molestiae sed unde excepturi 
-           aspernatur obcaecati?
+            Welcome to my personal AI image generator project! I created this site to explore how artificial intelligence can transform simple text prompts into stunning visuals. Whether you’re curious about AI, looking for creative inspiration, or just want to experiment, this platform is all about learning and having fun with cutting-edge technology.
           </p>
-          <Button className="bg-rose-500 w-36 h-12 text-base uppercase" size={"lg"}> About Us</Button>
+         <Button className="bg-rose-500 w-36 h-12 text-base uppercase" size={"lg"}><a href="https://github.com/utkarshranaa">
+        About Me</a></Button>
         </div>
       </div>
     </div>
