@@ -15,9 +15,7 @@ const Price = () => {
       Our Pricing Plans
     </h1>
     <p className="text-white font-medium text-opacity-70">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam 
-      dolor id nostrum mollitia corporis laudantium repudiandae quas, 
-      nobis dicta expedita?
+      The price plans are not active as of now, but VERY SOON!
     </p>
     <div className="mt-8">
     <div className="flex items-center space-x-3 mb-3">
