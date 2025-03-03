@@ -17,10 +17,10 @@ const Hero = () => {
           method: 'POST',
           url: 'https://ai-text-to-image-generator-api.p.rapidapi.com/realistic',
           headers: {
-            'x-rapidapi-key': '6276852376msh36afe6b11748381p170744jsn573c0ab1ae6e',
-            'x-rapidapi-host': 'ai-text-to-image-generator-api.p.rapidapi.com',
+            'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+            'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST,
             'Content-Type': 'application/json'
-          },
+        },
           data: {
             inputs: prompt
           }
