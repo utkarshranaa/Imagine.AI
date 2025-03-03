@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 
 type Props={
-    showNav:Boolean;
+    showNav:boolean;
     closeNav: () =>void;
 }
 
